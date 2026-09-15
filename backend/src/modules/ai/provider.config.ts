@@ -35,7 +35,7 @@ export const PROVIDERS: ProviderConfig[] = [
   {
     name: "gemini",
     type: "gemini",
-    model: "gemini-2.5-flash",
+    model: "gemini-3.6-flash",
     apiKey: env.GEMINI_API_KEY,
   },
 ];

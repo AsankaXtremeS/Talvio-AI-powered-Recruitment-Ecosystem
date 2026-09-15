@@ -81,11 +81,16 @@ export const getRecommendations = async (req: Request, res: Response) => {
     // 4. Initial Ranking by Keyword Similarity
     const preRankedJobs = await Promise.all(
       availableJobs.map(async (job) => {
-        const keywords = job.skillsRequired?.length 
-          ? job.skillsRequired 
-          : await aiService.extractJdKeywords(job.description || job.title);
+        let keywords = job.skillsRequired;
+        if (!keywords || keywords.length === 0) {
+          try {
+            keywords = await aiService.extractJdKeywords(job.description || job.title);
+          } catch {
+            keywords = [];
+          }
+        }
           
-        const initialScore = aiService.calculateSimilarity(mergedSkills, keywords);
+        const initialScore = aiService.calculateSimilarity(mergedSkills, keywords || []);
         return { ...job, initialScore };
       })
     );
@@ -112,10 +117,15 @@ export const getRecommendations = async (req: Request, res: Response) => {
       cvContent: cvContent?.slice(0, CV_TEXT_PREVIEW_LIMIT)
     };
 
-    const detailedRankings = await aiService.rankJobsWithAI(
-      candidateSummary, 
-      topCandidates
-    );
+    let detailedRankings: any[] = [];
+    try {
+      detailedRankings = await aiService.rankJobsWithAI(
+        candidateSummary, 
+        topCandidates
+      );
+    } catch (aiErr) {
+      console.warn("AI ranking failed, falling back to heuristic similarity scores:", aiErr);
+    }
 
     // 6. Consolidate and Format Final Recommendations
     const finalResults = topCandidates

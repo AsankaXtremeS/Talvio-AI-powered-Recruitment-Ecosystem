@@ -13,7 +13,7 @@ import {
 /**
  * Configuration Constants
  */
-const AI_MODEL_NAME = "gemini-2.5-flash";
+const AI_MODEL_NAME = "gemini-3.6-flash";
 const CONCURRENT_AI_LIMIT = 3;
 const CV_SLICE_LENGTH = 4000;
 const JD_SLICE_LENGTH = 500;
