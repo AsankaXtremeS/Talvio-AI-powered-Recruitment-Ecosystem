@@ -1,120 +1,105 @@
+'use client'
+
 import React from 'react'
-import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import ContactForm from './contactForm'
+import { Mail, Phone, MapPin, MessageSquare, Headphones, Building2 } from 'lucide-react'
 
-const contactBg = '/images/landing/contact_background.png'
-
-const supportCategories = [
+const supportChannels = [
   {
+    icon: Headphones,
     title: 'Customer Support',
-    description:
-      'Our support team is available around the clock to address any concerns or queries you may have.',
+    description: '24/7 dedicated assistance for students and job seekers navigating the platform.',
   },
   {
-    title: 'Media Inquiries',
-    description: 
-      'For press releases, interviews, or media coverage, reach out to our communications team.',
+    icon: Building2,
+    title: 'Employer Inquiries',
+    description: 'Custom solutions, bulk hiring pipelines, and campus talent partnership options.',
   },
   {
-    title: 'Feedback and Suggestions',
-    description: 
-      'We value your input — share your ideas and help us improve our products and services.',
+    icon: MessageSquare,
+    title: 'General Inquiries & Feedback',
+    description: 'Share recommendations, explore integrations, or reach out to our core team.',
   },
 ]
 
 export const ContactSection = () => {
   return (
-    <section id='contact' className='relative min-h-screen w-full overflow-hidden py-20'>
-      <Image
-        src={contactBg}
-        alt='Contact background'
-        fill
-        sizes="100vw"
-        priority
-        className='object-cover'
-      />
-      <div className='absolute inset-0 bg-white/20' />
+    <section id="contact" className="relative w-full bg-white py-24 border-t border-zinc-100">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 items-start">
+          {/* Left Column: Info & Categories */}
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50/70 px-3 py-1 text-xs font-medium text-indigo-700">
+                <Mail className="h-3.5 w-3.5 text-indigo-600" />
+                <span>Contact Us</span>
+              </div>
 
-      <div className='relative z-10'>
-        <main
-          style={{
-            flex: 1,
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 0,
-            maxWidth: 1200,
-            width: '100%',
-            margin: '0 auto',
-            padding: '40px 48px 60px',
-            alignItems: 'start',
-          }}
-        >
-          <div style={{ paddingRight: 40, paddingTop: 10 }}>
-            <h1
-              style={{
-                fontSize: 52,
-                fontWeight: 800,
-                color: '#4f6ef7',
-                margin: '0 0 32px',
-                letterSpacing: '-1.5px',
-                lineHeight: 1.1,
-              }}
-            >
-              Contact Us
-            </h1>
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+                Get in Touch with{' '}
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  Our Team
+                </span>
+              </h2>
 
-            <p
-              style={{
-                fontSize: 15,
-                color: '#4b5563',
-                lineHeight: 1.7,
-                whiteSpace: 'pre-line',
-                margin: '92px 0 56px',
-              }}
-            >
-              {`Email, call, or complete the form to learn how
-                Talvio can solve your carrier problem.
-                info@Talvio.io
-                +94 123 456`}
-            </p>
+              <p className="mt-3 text-base text-zinc-600 leading-relaxed max-w-lg">
+                Have questions about our AI matching, company onboarding, or candidate features? We are always happy to help.
+              </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginTop: 20 }}>
-              {supportCategories.map((cat, catIndex) => (
-                <div
-                  key={catIndex}
-                  style={catIndex > 0 ? { borderLeft: '1px solid #d1d5db', paddingLeft: 8 } : undefined}
-                >
-                  <div>
-                    <h3
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 700,
-                        color: '#1a1f36',
-                        whiteSpace: 'nowrap',
-                        margin: '0 0 8px',
-                      }}
-                    >
-                      {cat.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        color: '#6b7280',
-                        lineHeight: 1.6,
-                        margin: 0,
-                      }}
-                    >
-                      {cat.description}
-                    </p>
+              {/* Direct Info Pills */}
+              <div className="mt-8 flex flex-col gap-3.5">
+                <div className="flex items-center gap-3 text-sm text-zinc-700">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                    <Mail className="h-4 w-4" />
                   </div>
+                  <span className="font-medium">info@talvio.io</span>
                 </div>
-              ))}
+
+                <div className="flex items-center gap-3 text-sm text-zinc-700">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                    <Phone className="h-4 w-4" />
+                  </div>
+                  <span className="font-medium">+94 123 456 789</span>
+                </div>
+
+                <div className="flex items-center gap-3 text-sm text-zinc-700">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                    <MapPin className="h-4 w-4" />
+                  </div>
+                  <span className="font-medium">Colombo, Sri Lanka</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Support Categories */}
+            <div className="mt-12 space-y-4 pt-8 border-t border-zinc-100">
+              {supportChannels.map((cat, idx) => {
+                const Icon = cat.icon
+                return (
+                  <div key={idx} className="flex items-start gap-3.5">
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-indigo-50 text-indigo-600">
+                      <Icon className="h-3.5 w-3.5" />
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-bold text-zinc-900 uppercase tracking-wide">
+                        {cat.title}
+                      </h4>
+                      <p className="mt-0.5 text-xs text-zinc-500 leading-relaxed">
+                        {cat.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
-          <ContactForm />
-        </main>
+          {/* Right Column: Contact Form */}
+          <div className="lg:col-span-6">
+            <ContactForm />
+          </div>
+        </div>
       </div>
     </section>
   )

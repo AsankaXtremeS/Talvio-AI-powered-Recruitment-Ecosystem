@@ -1,103 +1,108 @@
-import React from 'react'
-import Image from 'next/image'
-import { redirect } from 'next/navigation'
-import { Sparkles, Route, Mails, ContactRound, ClipboardClock } from 'lucide-react'
-import { TbFileAi } from 'react-icons/tb'
-import { IoIosFlash } from 'react-icons/io'
+'use client'
 
-const featuresBg = '/images/landing/talvio_background.png'
+import React from 'react'
+import { redirect } from 'next/navigation'
+import { Sparkles, Route, MailCheck, Compass, FileText, ArrowUpRight } from 'lucide-react'
 
 type FeatureCard = {
   title: string
   description: string
-  icon: React.ReactNode
+  icon: React.ElementType
+  tag: string
 }
 
 const features: FeatureCard[] = [
   {
     title: 'AI Smart Matching',
-    description: 'AI matches candidates to jobs based on skills, interests, and role requirements.',
-    icon: <Sparkles size={25} className='text-indigo-600' />,
+    description: 'Intelligently connects candidate skills, projects, and ambitions with precise job requirements.',
+    icon: Sparkles,
+    tag: 'Intelligence',
   },
   {
-    title: 'End-to-End Hiring',
-    description: 'Handle applications, interviews, chat, and documents in one unified system.',
-    icon: <Route size={25} className='text-indigo-600' />,
+    title: 'End-to-End Hiring Pipeline',
+    description: 'Manage applications, shortlist stages, live status updates, and documents in one fluid workspace.',
+    icon: Route,
+    tag: 'Workflow',
   },
   {
-    title: 'Auto Interview Responses',
-    description: 'Automatically send professionalselection,rejection, or on-hold emails after interviews.',
-    icon: <Mails size={25} className='text-indigo-600' />,
+    title: 'Automated Interview Feedback',
+    description: 'Generate and send instant, professional selection or rejection updates without manual overhead.',
+    icon: MailCheck,
+    tag: 'Automation',
   },
   {
-    title: 'Personalized Job Discovery',
-    description: 'Students receive tailored internship and job recommendations that fit their profiles.',
-    icon: <ContactRound size={25} className='text-indigo-600' />,
+    title: 'Personalized Career Discovery',
+    description: 'Students receive curated internships and junior roles matched directly to their profile strength.',
+    icon: Compass,
+    tag: 'Jobseekers',
   },
   {
-    title: 'Resume & Cover Letter AI',
-    description: 'Refine resumes and cover letters using intelligent AI templates.',
-    icon: <TbFileAi size={25} className='text-indigo-600' />,
-  },
-  {
-    title: 'Real-Time Collaboration',
-    description: 'Built-in file sharing, and interview scheduling for seamless communication.',
-    icon: <ClipboardClock size={25} className='text-indigo-600' />,
+    title: 'AI Resume & Cover Letter Suite',
+    description: 'Fine-tune resumes, highlight key strengths, and tailor cover letters with embedded AI assistance.',
+    icon: FileText,
+    tag: 'AI Tools',
   },
 ]
 
 export const FeaturesSection = () => {
   return (
-    <section id='features' className='relative min-h-screen w-full overflow-hidden py-20'>
-      <Image
-        src={featuresBg}
-        alt='Features background'
-        fill
-        sizes="100vw"
-        priority
-        className='object-cover'
-      />
+    <section id="features" className="relative w-full bg-white py-24 border-t border-zinc-100">
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Section Header */}
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50/70 px-3 py-1 text-xs font-medium text-indigo-700">
+            <Sparkles className="h-3.5 w-3.5 text-indigo-600" />
+            <span>Platform Features</span>
+          </div>
 
-      <div className='absolute inset-0 bg-white/30' />
-
-      <div className='relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 pt-5'>
-        <div className='text-center'>
-          <p className='flex items-center justify-center gap-2 font-medium text-blue-500'>
-            <IoIosFlash size={20} className='text-indigo-600' />
-            <span>Features</span>
-          </p>
-
-          <h2 className='mt-4 text-4xl font-bold text-[#333333]'>
-            Everything You Need For Smart <br />
-            <span className='text-blue-600'> Recruitment</span>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+            Everything You Need for <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Frictionless Hiring
+            </span>
           </h2>
 
-          <p className='mt-3 text-[20px] font-medium text-[#666666]' style={{ fontFamily: 'Roboto, sans-serif' }}>
-            Our platform makes it simple for students and companies to find the best match
+          <p className="mt-3 text-base text-zinc-600">
+            Powerful yet simple tools designed to empower candidates and accelerate hiring decisions.
           </p>
         </div>
 
-        <section className='mx-auto mt-12 w-full'>
-          <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3'>
-            {features.map((feature) => (
-              <article
-                key={feature.title}
-                className='group h-42.5 w-89.25 rounded-2xl border border-white/70 bg-white/85 p-7 shadow-md backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl'
+        {/* Features Grid */}
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, idx) => {
+            const Icon = feature.icon
+            return (
+              <div
+                key={idx}
+                className="group relative flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-7 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-md"
               >
-                <div className='mb-4 flex items-center gap-3'>
-                  <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-xs font-bold text-blue-600'>
-                    {feature.icon}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 transition-colors group-hover:bg-indigo-600 group-hover:text-white">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">
+                      {feature.tag}
+                    </span>
                   </div>
-                  <h3 className='text-base font-bold text-[#1a1f36]'>{feature.title}</h3>
+
+                  <h3 className="mt-5 text-lg font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors">
+                    {feature.title}
+                  </h3>
+
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                    {feature.description}
+                  </p>
                 </div>
 
-                <p className='text-sm leading-7 text-[#6b7280]'>{feature.description}</p>
-
-                <div className='mt-5 h-[2.5px] w-8 rounded-sm bg-linear-to-r from-blue-600 to-indigo-400 transition-all duration-300 group-hover:w-12' />
-              </article>
-            ))}
-          </div>
-        </section>
+                <div className="mt-6 flex items-center gap-1 text-xs font-semibold text-indigo-600 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  <span>Learn more</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </section>
   )

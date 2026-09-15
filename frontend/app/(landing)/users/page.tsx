@@ -1,330 +1,156 @@
+'use client'
+
 import React from 'react'
-import Image from 'next/image'
-import Link from "next/link";
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { FaCircleCheck } from 'react-icons/fa6'
-import { Star } from 'lucide-react'
+import { CheckCircle2, ArrowRight, Users as UsersIcon, Building2, Quote } from 'lucide-react'
 
-const employeeBg = '/images/landing/employee_background.png'
-
-const features: string[] = [
-  'AI-powered job and candidate matching',
-  'End-to-end application and interview flow',
-  'Automated interview response emails',
-  'Built-in communication and file sharing',
+const seekerBenefits = [
+  'Intelligent skill & interest job recommendations',
+  'Real-time application status and stage tracking',
+  'Automated interview feedback and status updates',
+  'Integrated AI resume enhancements',
 ]
 
-const StarRating = ({ value }: { value: number }) => {
-  const fullStars = Math.floor(value)
-  const hasHalfStar = value - fullStars >= 0.5
-
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-      {Array.from({ length: 5 }).map((_, index) => {
-        const isFull = index < fullStars
-        const isHalf = index === fullStars && hasHalfStar
-        const color = isFull || isHalf ? '#f59e0b' : '#d1d5db'
-
-        return (
-          <span key={index} style={{ color, fontSize: 14, lineHeight: 1 }}>
-            <Star
-              key={index}
-              size={13}
-              color={color}
-              fill={color} 
-              style={{ lineHeight: 1 }}
-            />
-          </span>
-        )
-      })}
-    </div>
-  )
-}
+const employerBenefits = [
+  'Automated candidate ranking and shortlisting',
+  'Direct messaging and instant interview scheduling',
+  'Automated batch interview outcome emails',
+  'Verified pipeline of top university talent',
+]
 
 export const UsersSection = () => {
   return (
-    <section id='users' className='relative min-h-screen w-full overflow-hidden py-20'>
-      <Image
-        src={employeeBg}
-        alt='Employee background'
-        fill
-        sizes="100vw"
-        priority
-        className='object-cover'
-      />
-      <div className='relative z-10'>
-        <section style={{ textAlign: 'center', padding: '40px 20px 32px' }}>
-          <h1 style={{ fontSize: 40, fontWeight: 800, color: '#4f6ef7', margin: '0 0 12px', letterSpacing: '-1px' }}>
-            Built for Results
-          </h1>
-          <p style={{ fontSize: 15, color: '#6b7280', margin: 0 }}>
-            Smart features and proven success stories that deliver real outcomes.
+    <section id="users" className="relative w-full bg-white py-24 border-t border-zinc-100">
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Section Header */}
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50/70 px-3 py-1 text-xs font-medium text-indigo-700">
+            <UsersIcon className="h-3.5 w-3.5 text-indigo-600" />
+            <span>Dual Solutions</span>
+          </div>
+
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+            Built for Job Seekers &amp;{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Ambitious Teams
+            </span>
+          </h2>
+
+          <p className="mt-3 text-base text-zinc-600">
+            Tailored capabilities built to remove hiring friction on both sides of the recruitment equation.
           </p>
-        </section>
+        </div>
 
-        <section
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: 20,
-            maxWidth: 1100,
-            margin: '0 auto',
-            padding: '0 24px 60px',
-            alignItems: 'start',
-          }}
-        >
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.88)',
-              backdropFilter: 'blur(16px)',
-              borderRadius: 20,
-              padding: '28px 28px 28px',
-              borderLeft: '4px solid #4f6ef7',
-              boxShadow: '0 4px 24px rgba(79,110,247,0.10)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 0,
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-block',
-                background: 'rgba(79,110,247,0.1)',
-                color: '#4f6ef7',
-                fontSize: 12,
-                fontWeight: 600,
-                borderRadius: 20,
-                padding: '4px 14px',
-                marginBottom: 16,
-                width: 'fit-content',
-              }}
-            >
-              For Job Seekers
-            </span>
+        {/* Dual Cards */}
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {/* Card 1: Job Seekers */}
+          <div className="relative flex flex-col justify-between rounded-3xl border border-zinc-200/90 bg-zinc-50/40 p-8 sm:p-10 shadow-xs transition-all duration-200 hover:border-indigo-200 hover:shadow-md">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-100/80 px-3.5 py-1 text-xs font-semibold text-blue-700">
+                <UsersIcon className="h-3.5 w-3.5" />
+                <span>For Job Seekers</span>
+              </div>
 
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#1a1f36', margin: '0 0 24px', lineHeight: 1.3 }}>
-              Built for Students & Career Starters
-            </h2>
+              <h3 className="mt-6 text-2xl font-bold tracking-tight text-zinc-900">
+                Launch &amp; Advance Your Career
+              </h3>
+              <p className="mt-2 text-sm text-zinc-600 leading-relaxed">
+                Discover curated opportunities, stand out with AI-backed profiles, and receive transparent updates throughout your hiring journey.
+              </p>
 
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {features.map((f, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span>
-                    <FaCircleCheck size={20} className='text-green-500' />
-                  </span>
-                  <span style={{ fontSize: 14, fontWeight: 500, color: '#1a1f36' }}>{f}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <Link href="/register">
-            <button 
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                background: 'linear-gradient(135deg,#4f6ef7,#6c87fa)',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 30,
-                padding: '11px 22px',
-                fontSize: 13,
-                fontWeight: 600,
-                cursor: 'pointer',
-                fontFamily: "'DM Sans', sans-serif",
-                width: 'fit-content',
-                boxShadow: '0 4px 14px rgba(79,110,247,0.35)',
-              }}
-            >
-              Signup as Jobseeker
-              <svg viewBox='0 0 20 20' fill='currentColor' style={{ width: 16, height: 16 }}>
-                <path fillRule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clipRule='evenodd' />
-              </svg>
-            </button>
-            </Link>
+              <ul className="mt-8 space-y-3.5">
+                {seekerBenefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-zinc-700">
+                    <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-emerald-600" />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-10 pt-6 border-t border-zinc-200/60">
+              <Link href="/register">
+                <button className="group inline-flex items-center gap-2 rounded-xl bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-zinc-800 active:scale-[0.99]">
+                  <span>Sign up as Jobseeker</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </button>
+              </Link>
+            </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 0 }}>
-            <div style={{ position: 'relative' }}>
-              <span
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 10,
-                  fontSize: 60,
-                  color: '#1a1f36',
-                  lineHeight: 1,
-                  fontFamily: 'Georgia, serif',
-                  fontWeight: 900,
-                }}
-              >
-                &ldquo;
-              </span>
-              <div
-                style={{
-                  background: 'rgba(255,255,255,0.92)',
-                  borderRadius: 18,
-                  padding: '24px 20px 20px',
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.07)',
-                  marginTop: 20,
-                }}
-              >
-                <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 12 }}>
-                  <Image
-                    src='https://randomuser.me/api/portraits/women/44.jpg'
-                    alt='Jane Winday'
-                    width={52}
-                    height={52}
-                    style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
-                  />
-                  <div>
-                    <p style={{ fontSize: 14, fontWeight: 700, color: '#1a1f36', margin: '0 0 4px' }}>
-                      &ldquo;This platform completely changed how I applied for internships.&rdquo;
-                    </p>
-                    <StarRating value={4.5} />
-                  </div>
-                </div>
-                <p style={{ fontSize: 13, color: '#6b7280', fontStyle: 'italic', margin: '0 0 8px', lineHeight: 1.6 }}>
-                  I no longer send random applications. The AI recommendations matched my skills perfectly.
+          {/* Card 2: Employers */}
+          <div className="relative flex flex-col justify-between rounded-3xl border border-zinc-200/90 bg-zinc-50/40 p-8 sm:p-10 shadow-xs transition-all duration-200 hover:border-indigo-200 hover:shadow-md">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 border border-indigo-100/80 px-3.5 py-1 text-xs font-semibold text-indigo-700">
+                <Building2 className="h-3.5 w-3.5" />
+                <span>For Employers</span>
+              </div>
+
+              <h3 className="mt-6 text-2xl font-bold tracking-tight text-zinc-900">
+                Hire Qualified Talent, Faster
+              </h3>
+              <p className="mt-2 text-sm text-zinc-600 leading-relaxed">
+                Automate repetitive screening, manage candidate pipelines effortlessly, and connect directly with high-potential candidates.
+              </p>
+
+              <ul className="mt-8 space-y-3.5">
+                {employerBenefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-zinc-700">
+                    <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-emerald-600" />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-10 pt-6 border-t border-zinc-200/60">
+              <Link href="/register/employer">
+                <button className="group inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-indigo-700 active:scale-[0.99]">
+                  <span>Sign up as Employer</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Minimalist Testimonial Strip */}
+        <div className="mt-14 rounded-2xl border border-zinc-200/80 bg-zinc-50/50 p-6 sm:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div className="flex items-start gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                <Quote className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-medium italic text-zinc-700">
+                  &ldquo;Talvio cut our preliminary screening time by 40%. We found the ideal engineering interns within a single week.&rdquo;
                 </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#1a1f36' }}>Jane Winday</span>
-                  <span style={{ fontSize: 12, color: '#9ca3af' }}>Final year undergraduate</span>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-xs font-bold text-zinc-900">Sarah Jenkins</span>
+                  <span className="text-xs text-zinc-400">•</span>
+                  <span className="text-xs text-zinc-500">Tech Recruiter, Novatech</span>
                 </div>
               </div>
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <div
-                style={{
-                  background: 'rgba(255,255,255,0.92)',
-                  borderRadius: 18,
-                  padding: '24px 20px 20px',
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.07)',
-                }}
-              >
-                <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 12 }}>
-                  <div
-                    style={{
-                      width: 52,
-                      height: 52,
-                      borderRadius: 12,
-                      background: '#e63b2e',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 18,
-                      fontWeight: 800,
-                      color: '#fff',
-                      flexShrink: 0,
-                    }}
-                  >
-                    CT
-                  </div>
-                  <div>
-                    <p style={{ fontSize: 14, fontWeight: 700, color: '#1a1f36', margin: '0 0 4px' }}>
-                      &ldquo;We reduced our hiring time by more than 40%.&rdquo;
-                    </p>
-                    <StarRating value={4.5} />
-                  </div>
-                </div>
-                <p style={{ fontSize: 13, color: '#6b7280', fontStyle: 'italic', margin: '0 0 8px', lineHeight: 1.6 }}>
-                  AI-ranked shortlisting and automated scheduling made recruitment efficient and stress-free. We now focus only on high-quality candidates.
+            <div className="flex items-start gap-4 md:border-l md:border-zinc-200/80 md:pl-6">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+                <Quote className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-medium italic text-zinc-700">
+                  &ldquo;The AI suggestions matched my skill profile with relevant job openings that other platforms completely missed.&rdquo;
                 </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#1a1f36' }}>Jane Winday</span>
-                  <span style={{ fontSize: 12, color: '#9ca3af' }}>Creative Tech</span>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-xs font-bold text-zinc-900">Alex Fernando</span>
+                  <span className="text-xs text-zinc-400">•</span>
+                  <span className="text-xs text-zinc-500">Junior Full-Stack Developer</span>
                 </div>
               </div>
-              <span
-                style={{
-                  position: 'absolute',
-                  bottom: 185,
-                  right: 16,
-                  transform: 'rotate(180deg)',
-                  fontSize: 60,
-                  color: '#1a1f36',
-                  lineHeight: 1,
-                  fontFamily: 'Georgia, serif',
-                  fontWeight: 900,
-                }}
-              >
-                &ldquo;
-              </span>
             </div>
           </div>
-
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.88)',
-              backdropFilter: 'blur(16px)',
-              borderRadius: 20,
-              padding: '28px 28px 28px',
-              borderRight: '4px solid #4f6ef7',
-              boxShadow: '0 4px 24px rgba(79,110,247,0.10)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 0,
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-block',
-                background: 'rgba(79,110,247,0.1)',
-                color: '#4f6ef7',
-                fontSize: 12,
-                fontWeight: 600,
-                borderRadius: 20,
-                padding: '4px 14px',
-                marginBottom: 16,
-                width: 'fit-content',
-              }}
-            >
-              For Employers
-            </span>
-
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#1a1f36', margin: '0 0 24px', lineHeight: 1.3 }}>
-              Hire the Right Talent, Faster
-            </h2>
-
-            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {features.map((f, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span>
-                    <FaCircleCheck size={20} className='text-green-500' />
-                  </span>
-                  <span style={{ fontSize: 14, fontWeight: 500, color: '#1a1f36' }}>{f}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <Link href="/register/employer">
-            <button
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                background: 'linear-gradient(135deg,#4f6ef7,#6c87fa)',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 30,
-                padding: '11px 22px',
-                fontSize: 13,
-                fontWeight: 600,
-                cursor: 'pointer',
-                fontFamily: "'DM Sans', sans-serif",
-                width: 'fit-content',
-                boxShadow: '0 4px 14px rgba(79,110,247,0.35)',
-              }}
-            >
-              Signup as Employer
-              <svg viewBox='0 0 20 20' fill='currentColor' style={{ width: 16, height: 16 }}>
-                <path fillRule='evenodd' d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z' clipRule='evenodd' />
-              </svg>
-            </button>
-            </Link>
-          </div>
-        </section>
+        </div>
       </div>
     </section>
   )

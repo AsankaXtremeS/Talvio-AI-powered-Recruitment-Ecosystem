@@ -1,110 +1,87 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
+import { ArrowUp } from 'lucide-react'
+import { FaLinkedinIn, FaXTwitter, FaFacebookF, FaGithub } from 'react-icons/fa6'
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <div>
-        <footer
-          style={{
-            background: 'linear-gradient(135deg,#3b4fd8 0%,#5b3fa8 100%)',
-            padding: '22px 48px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div style={{ display: 'flex', gap: 10 }}>
+    <footer className="w-full border-t border-zinc-100 bg-white py-12 text-zinc-600">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Logo & Tagline */}
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <Link href="/#home" className="inline-flex items-center group">
+              <span className="text-xl font-extrabold tracking-tight text-zinc-900 group-hover:text-indigo-600 transition-colors">
+                Talvio
+              </span>
+            </Link>
+            <p className="text-xs text-zinc-500 text-center md:text-left">
+              Intelligent matching for candidates and forward-thinking companies.
+            </p>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-2">
             <a
-              href='#'
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 8,
-                background: 'rgba(255,255,255,0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#fff',
-                textDecoration: 'none',
-                transition: 'background 0.2s',
-              }}
+              href="#"
+              aria-label="LinkedIn"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
             >
-              <svg viewBox='0 0 24 24' fill='currentColor' style={{ width: 17, height: 17 }}>
-                <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
-              </svg>
+              <FaLinkedinIn className="h-3.5 w-3.5" />
             </a>
             <a
-              href='#'
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 8,
-                background: 'rgba(255,255,255,0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#fff',
-                textDecoration: 'none',
-              }}
+              href="#"
+              aria-label="Twitter / X"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
             >
-              <svg viewBox='0 0 24 24' fill='currentColor' style={{ width: 16, height: 16 }}>
-                <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
-              </svg>
+              <FaXTwitter className="h-3.5 w-3.5" />
             </a>
             <a
-              href='#'
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 8,
-                background: 'rgba(255,255,255,0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#fff',
-                textDecoration: 'none',
-              }}
+              href="#"
+              aria-label="GitHub"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
             >
-              <svg viewBox='0 0 24 24' fill='currentColor' style={{ width: 17, height: 17 }}>
-                <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
-              </svg>
+              <FaGithub className="h-3.5 w-3.5" />
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-600"
+            >
+              <FaFacebookF className="h-3.5 w-3.5" />
             </a>
           </div>
 
-          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, textAlign: 'center' }}>
-            © 2025 Talvio. All rights reserved. |{' '}
-            <a href='/privacy-policy' className='footer-link' style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
-              Privacy Policy
-            </a>{' '}
-            |{' '}
-            <a href='/terms-of-service' className='footer-link' style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>
-              Terms of Service
-            </a>
-          </p>
-
+          {/* Scroll to Top */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 8,
-              background: 'rgba(255,255,255,0.15)',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#fff',
-              transition: 'background 0.2s',
-            }}
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-600 transition-all hover:bg-zinc-900 hover:text-white hover:border-zinc-900 cursor-pointer"
           >
-            <svg viewBox='0 0 20 20' fill='currentColor' style={{ width: 18, height: 18 }}>
-              <path fillRule='evenodd' d='M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z' clipRule='evenodd' />
-            </svg>
+            <ArrowUp className="h-4 w-4" />
           </button>
-        </footer>
-    </div>
+        </div>
+
+        {/* Bottom Legal bar */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between border-t border-zinc-100 pt-6 text-xs text-zinc-400 gap-3">
+          <p>© {new Date().getFullYear()} Talvio. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy-policy" className="hover:text-zinc-700 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-of-service" className="hover:text-zinc-700 transition-colors">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
   )
 }
 

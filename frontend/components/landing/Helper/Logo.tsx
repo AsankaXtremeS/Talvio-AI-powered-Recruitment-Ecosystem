@@ -1,10 +1,13 @@
 import React from 'react'
+import Link from 'next/link'
 
 const Navlogo = () => {
   return (
-    <span className="text-2xl font-extrabold tracking-tight text-purple-700">
+    <Link href="/#home" className="inline-flex items-center group">
+      <span className="text-2xl font-extrabold tracking-tight text-zinc-900 group-hover:text-indigo-600 transition-colors">
         Talvio
       </span>
+    </Link>
   )
 }
 
